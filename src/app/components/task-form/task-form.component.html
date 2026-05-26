@@ -1,0 +1,5 @@
+<label>Title</label>
+<input type="text" [(ngModel)]="taskTitle">
+<label>Description</label>
+<input type="text" [(ngModel)]="taskDescription">
+<button [disabled]="taskTitle.trim() === ''" (click)="submitForm()">Add Task</button>
