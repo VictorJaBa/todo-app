@@ -13,7 +13,6 @@ import { AsyncPipe } from '@angular/common';
 export class AppComponent {
   title = 'todo-app';
   // firestore = inject(Firestore);
-
   constructor() {
   }
 }
