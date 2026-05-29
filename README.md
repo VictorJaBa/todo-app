@@ -19,4 +19,4 @@ A full-Stack task management app built for learning purposes.
 4. Open `http://localhost:4200` in your browser
 
 ## Dev Notes
-Troubleshooting and technical decision documented in `/docs`
+Troubleshooting and technical decision documented in [Notion]
