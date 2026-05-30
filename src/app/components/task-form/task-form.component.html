@@ -1,5 +1,31 @@
-<label>Title</label>
-<input type="text" [(ngModel)]="taskTitle">
-<label>Description</label>
-<input type="text" [(ngModel)]="taskDescription">
-<button [disabled]="taskTitle.trim() === ''" (click)="submitForm()">Add Task</button>
+<!--div.card-->
+<div class="bg-gray-800 rounded-xl p-6 mb-6">
+    <h2 class="text-lg font-semibold text-white mb-4">Add New Task</h2>
+    <!--div.column-->
+    <div class="flex flex-col gap-3">
+        <div>
+            <label for="taskTitle" class="text-gray-300 text-sm mb-1 block">Task Title</label>
+            <input type="text" id="taskTitle" [(ngModel)]="taskTitle"
+                class="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 w-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                placeholder="Title your task...">
+        </div>
+        <div>
+            <label for="taskDescription" class="text-gray-300 text-sm mb-1 block">Task Description</label>
+            <input type="text" id="taskDescription" [(ngModel)]="taskDescription"
+                class="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 w-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                placeholder="Describe your task...">
+        </div>
+
+    </div>
+    <!--div.row-->
+    <div class="flex gap-3 mt-3">
+        <div class="flex-1">
+            <label for="taskCategory" class="text-gray-300 text-sm mb-1 block">Task Category</label>
+            <input type="text" id="taskCategory" [(ngModel)]="taskCategory"
+                class="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 w-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                placeholder="Category...">
+        </div>
+        <button [disabled]="taskTitle.trim() === ''" (click)="submitForm()"
+            class="bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg self-end">Add Task</button>
+    </div>
+</div>
