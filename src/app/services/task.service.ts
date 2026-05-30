@@ -7,17 +7,17 @@ export class TaskService {
   // 1. Signal privado con la lista de tareas
   private tasks = signal<Task[]>([])
 
-  // 2. Computed: tareas completadas (filtra el array)
+  // 2. Computed: completed tasks (filter array)
   completedTasks = computed(() =>
     this.tasks().filter(task => task.completed)
   )
 
-  // 3. Computed: tareas pendientes
+  // 3. Computed: pending tasks
   pendingTask = computed(() =>
     this.tasks().filter(task => !task.completed)
   )
 
-  //4. Métodos CRUD
+  //4. CRUD Methods 
   addTask(title: string, description?: string, category?: string): void {
     const newTask: Task = {
       id: Date.now(),
@@ -45,4 +45,23 @@ export class TaskService {
   getTasks() {
     return this.tasks.asReadonly()
   }
+
+  // 1. Signal with the active filter
+  // Posible values: 'all', 'pending', 'completed'
+  activeFilter = signal<'all' | 'pending' | 'completed'>('all')
+
+  // 2. Method to change the filter
+  setFilter(filter: 'all' | 'pending' | 'completed'): void {
+    this.activeFilter.set(filter)
+  }
+
+  // 3. Computed: tasks filtered by the active filter
+  filteredTasks = computed(() => {
+    const filter = this.activeFilter()
+    const tasks = this.tasks()
+    return filter === 'all' ? tasks : filter === 'pending' ? tasks.filter(task => !task.completed) : tasks.filter(task => task.completed)
+  })
+
+
 }
+

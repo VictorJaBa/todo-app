@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { TaskItemComponent } from '../task-item/task-item.component';
-
+import { TaskFilterComponent } from '../task-filter/task-filter.component';
 
 
 @Component({
@@ -12,6 +12,6 @@ import { TaskItemComponent } from '../task-item/task-item.component';
   })
   export class TaskListComponent {
     taskService = inject(TaskService)
-    tasks = this.taskService.getTasks()
+    tasks = this.taskService.filteredTasks
     pendingTask = this.taskService.pendingTask
   }

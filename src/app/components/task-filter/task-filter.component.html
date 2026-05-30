@@ -1,1 +1,18 @@
-<p>task-filter works!</p>
+<button
+    class="flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+    [class.bg-violet-600]="taskService.activeFilter() === 'all'"
+    [class.text-white]="taskService.activeFilter() === 'all'" (click)="taskService.setFilter('all')">
+    <i class="fa-solid fa-list"></i>
+    All</button>
+<button
+    class="flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+    [class.bg-violet-600]="taskService.activeFilter() === 'pending'"
+    [class.text-white]="taskService.activeFilter() === 'pending'" (click)="taskService.setFilter('pending')">
+    <i class="fa-solid fa-exclamation"></i>
+    Pending</button>
+<button
+    class="flex items-center gap-2 w-full text-left px-3 py-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+    [class.bg-violet-600]="taskService.activeFilter() === 'completed'"
+    [class.text-white]="taskService.activeFilter() === 'completed'" (click)="taskService.setFilter('completed')">
+    <i class="fa-solid fa-check"></i>
+    Completed</button>
