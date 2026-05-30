@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { TaskItemComponent } from '../task-item/task-item.component';
 
@@ -13,5 +13,5 @@ import { TaskItemComponent } from '../task-item/task-item.component';
   export class TaskListComponent {
     taskService = inject(TaskService)
     tasks = this.taskService.getTasks()
+    pendingTask = this.taskService.pendingTask
   }
-
