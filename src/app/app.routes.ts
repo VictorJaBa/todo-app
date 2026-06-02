@@ -10,7 +10,7 @@ export const routes: Routes = [
     { path: '', component: DashboardComponent, canActivate: [authGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: '**', redirectTo: '' },
-    { path: 'setup-2fa', component: SetupTwoFaComponent },
-    { path: 'verify-2fa', component: VerifyTwoFaComponent }
+    { path: 'setup-two-fa', component: SetupTwoFaComponent, canActivate: [authGuard] },
+    { path: 'verify-two-fa', component: VerifyTwoFaComponent, canActivate: [authGuard] },
+    { path: '**', redirectTo: '' }
 ];

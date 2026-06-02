@@ -56,6 +56,6 @@ export class AuthService {
   //Verify if the user has 2FA enable
   async hasTotpEnabled(uid: string): Promise<boolean> {
     const docSnap = await getDoc(doc(this.firestore, 'users', uid))
-    return docSnap.exists() ? docSnap.data()['totpEnable'] === true : false
+    return docSnap.exists() ? docSnap.data()['totpEnabled'] === true : false
   }
 }

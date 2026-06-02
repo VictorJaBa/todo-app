@@ -18,20 +18,34 @@ export class LoginComponent {
   errorMessage = ''
 
   async loginWithEmail() {
-    try {
-      await this.authService.loginWithEmail(this.email, this.password)
+  try {
+    const result = await this.authService.loginWithEmail(this.email, this.password)
+    const hasTwoFA = await this.authService.hasTotpEnabled(result.user.uid)
+    console.log('hasTwoFA:', hasTwoFA)
+    console.log('uid', result.user.uid)
+
+    if (hasTwoFA) {
+      this.router.navigate(['/verify-two-fa'])
+    } else {
       this.router.navigate(['/'])
-    } catch (err: any) {
-      this.errorMessage = err.message
     }
+  } catch (err: any) {
+    this.errorMessage = err.message
   }
+}
 
   async loginWithGoogle() {
-    try {
-      await this.authService.loginWithGoogle()
+  try {
+    const result = await this.authService.loginWithGoogle()
+    const hasTwoFA = await this.authService.hasTotpEnabled(result.user.uid)
+
+    if (hasTwoFA) {
+      this.router.navigate(['/verify-two-fa'])
+    } else {
       this.router.navigate(['/'])
-    } catch (err: any) {
-      this.errorMessage = err.message
     }
+  } catch (err: any) {
+    this.errorMessage = err.message
   }
+}
 }

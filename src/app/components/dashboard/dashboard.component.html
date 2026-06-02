@@ -28,9 +28,10 @@
 
         <!--bottom settings menu-->
         <div class="mt-auto mb-4">
-            <button class="flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700">
-                <i class="fa-solid fa-gear"></i>
-                Settings
+            <button (click)="enable2FA()"
+                class="flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700 text-gray-300">
+                <i class="fa-solid fa-shield-halved"></i>
+                Enable 2FA
             </button>
 
             <button (click)="logout()"

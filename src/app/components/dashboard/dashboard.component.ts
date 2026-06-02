@@ -19,4 +19,8 @@ export class DashboardComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  enable2FA() {
+    this.router.navigate(['/setup-two-fa']);
+  }
 }
