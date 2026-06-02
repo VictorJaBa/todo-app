@@ -27,12 +27,20 @@
         </div>
 
         <!--bottom settings menu-->
-        <div class="absolute bottom-0 left-0 w-64">
+        <div class="mt-auto mb-4">
             <button class="flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700">
                 <i class="fa-solid fa-gear"></i>
                 Settings
             </button>
+
+            <button (click)="logout()"
+                class="flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700 text-red-400">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Cerrar Sesión
+            </button>
         </div>
+
+
     </aside>
 
     <main class="flex-1 overflow-y-auto p-8">
