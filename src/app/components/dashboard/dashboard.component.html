@@ -28,10 +28,12 @@
 
         <!--bottom settings menu-->
         <div class="mt-auto mb-4">
-            <button (click)="enable2FA()"
-                class="flex items-center gap-2 w-full text-left p-2 rounded hover:bg-gray-700 text-gray-300">
+            <button (click)="enable2FA()" [disabled]="totpEnabled"
+                class="flex items-center gap-2 w-full text-left p-2 rounded transition-colors"
+                [class.text-green-400]="totpEnabled" [class.hover:bg-gray-700]="!totpEnabled"
+                [class.text-gray-300]="!totpEnabled">
                 <i class="fa-solid fa-shield-halved"></i>
-                Enable 2FA
+                {{ totpEnabled ? '2FA Enabled ✓' : 'Enable 2FA' }}
             </button>
 
             <button (click)="logout()"
@@ -48,4 +50,48 @@
         <app-task-form />
         <app-task-list />
     </main>
+
+    <!-- Modal Setup 2FA -->
+    @if (showSetup2FA) {
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div class="bg-gray-900 rounded-xl p-8 w-full max-w-md border border-gray-700">
+
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-semibold text-white">Setup 2FA</h2>
+                <button (click)="showSetup2FA = false" class="text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <p class="text-gray-400 text-sm mb-6">
+                Scan the QR code with Google Authenticator, then enter the 6-digit code.
+            </p>
+
+            @if (qrCodeUrl()) {
+            <div class="flex justify-center mb-6">
+                <img [src]="qrCodeUrl()" alt="QR Code" class="rounded-lg">
+            </div>
+            }
+
+            @if (errorMessage2FA) {
+            <p class="text-red-400 text-sm mb-4 bg-red-400/10 px-3 py-2 rounded-lg">
+                {{ errorMessage2FA }}
+            </p>
+            }
+
+            <div class="mb-4">
+                <label class="text-gray-400 text-sm mb-1 block">Verification Code</label>
+                <input type="text" [(ngModel)]="verificationCode"
+                    class="bg-gray-800 border border-gray-600 rounded-lg px-4 py-2 w-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500"
+                    placeholder="000000" maxlength="6">
+            </div>
+
+            <button (click)="confirmSetup()"
+                class="w-full bg-violet-600 hover:bg-violet-700 text-white py-2 rounded-lg font-medium transition-colors">
+                Confirm & Enable 2FA
+            </button>
+
+        </div>
+    </div>
+    }
 </div>
